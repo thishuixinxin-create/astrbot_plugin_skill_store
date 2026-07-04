@@ -281,9 +281,8 @@ class GitHubSkillSource:
 
         # 多种搜索策略，覆盖不同生态的 SKILL
         queries = [
-            "topic:skill&sort=stars&order=desc&per_page=100",
-            "skill+in:name&sort=stars&order=desc&per_page=100",
-            "SKILL.md+in:readme&sort=stars&order=desc&per_page=100",
+            "topic:skill&sort=stars&order=desc&per_page=50",
+            "skill+in:name&sort=stars&order=desc&per_page=50",
         ]
 
         # 去重后的仓库列表
@@ -302,7 +301,7 @@ class GitHubSkillSource:
         logger.info(f"[SkillSource] 待检查: {len(unique_repos)} 个仓库")
 
         # 并发检查 SKILL.md
-        sem = asyncio.Semaphore(5)
+        sem = asyncio.Semaphore(10)
         async def check(repo):
             async with sem:
                 full_name = repo.get("full_name", "")
