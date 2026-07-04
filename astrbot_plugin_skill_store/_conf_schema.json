@@ -1,8 +1,0 @@
-{
-  "github_token": {
-    "description": "GitHub Personal Access Token（可选）。提高 GitHub API 频率限制（从 60次/h 到 5000次/h）。不需要任何权限，只需要能访问 public repos。",
-    "type": "string",
-    "default": "",
-    "required": false
-  }
-}
