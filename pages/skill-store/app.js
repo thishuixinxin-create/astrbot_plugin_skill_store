@@ -1,4 +1,4 @@
-// SKILL Store v3
+// SKILL Store v0.1.1
 (function() {
   var bridge = window.AstrBotPluginPage;
   if (!bridge) return document.getElementById('list').innerHTML = '<div style="text-align:center;padding:60px;color:red">Bridge not loaded</div>';
