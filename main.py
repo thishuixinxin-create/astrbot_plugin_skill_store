@@ -34,7 +34,7 @@ PLUGIN_NAME = "astrbot_plugin_skill_store"
     PLUGIN_NAME,
     "灰心心",
     "浏览、搜索、一键安装来自 GitHub 的 AstrBot Skills",
-    "0.1.0",
+    "0.1.1",
     "https://github.com/your-repo/astrbot_plugin_skill_store",
 )
 class SkillStorePlugin(Star):
@@ -75,6 +75,11 @@ class SkillStorePlugin(Star):
             logger.info(f"[{PLUGIN_NAME}] WebUI API 已注册")
         except Exception as e:
             logger.error(f"[{PLUGIN_NAME}] WebUI API 注册失败: {e}")
+
+        # 确保有初始缓存（即使是空的，避免前端报错）
+        if not os.path.exists(os.path.join(str(self.data_dir), "skills_cache.json")):
+            self.github_source._save_cache([])
+            logger.info(f"[{PLUGIN_NAME}] 已创建初始空缓存")
 
         # 启动后台缓存检查（非阻塞）
         self._bg_task = None
